@@ -1,0 +1,21 @@
+{
+  "name": "inline-critical-css",
+  "version": "1.0.0",
+  "description": "Improves website performance by conditionally inlining critical css, so that the page loads faster.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:srivallis/inline-critical-css.git"
+  },
+  "keywords": [],
+  "author": "srivalli.sivaramasankaran@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "critical": "^3.0.0",
+    "puppeteer": "^8.0.0"
+  }
+}

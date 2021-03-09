@@ -1,0 +1,35 @@
+header {
+  background: #9dd85d;
+  padding: 16px 64px;
+}
+
+.first-fold {
+  padding: 120px 0;
+  background: #ffffff;
+}
+
+.l-container {
+  padding: 0 64px;
+}
+
+h2 {
+  margin-bottom: 24px;
+}
+
+p {
+  margin-bottom: 24px;
+}
+
+.second-fold {
+  background: #efefef;
+  padding: 120px 0;
+}
+
+.sub-text {
+  color: D82B00;
+}
+
+.third-fold {
+  background: #9dd85d;
+  padding: 120px 0;
+}
