@@ -25,9 +25,12 @@ const opts = {
 };
 ```
 
+
 When the headless option is set to false, we can visually see how puppeteer works by launching the page with given screen resolutions.
 
+
 <img width="1096" alt="Screenshot 2021-07-04 at 12 30 25 PM" src="https://user-images.githubusercontent.com/79823203/124376266-c2ced380-dcc3-11eb-9e2b-983220b5ba8b.png">
+
 
 
 Using this script, the critical css can be either inlined or extracted to a separate file. 
@@ -40,11 +43,39 @@ target: { // use this property, if you need the critical css in a separate file
 }
 ```
 
+
 **To inline the critical css,**
 
 ```javascript
 inline: true // use this prop to directly inline the critical css to the html
 ```
+
+
+**Why conditionally inline critical css ?**
+
+We need not inline the critical css to a page everytime, instead, **we can inline the css ony when its not readily available in the user's browser cache**. Since the browser cache will have a copy of css which can be used for fast loading of webistes, we can retain the caching behaviour. The browser cache css will become a stale one only when the css of a page has been modified, and that would be the ideal time to inline it.
+
+
+**How to conditionally inline the critical css ?**
+
+Using a cookie & a hashed value for css files, we can check if the css available in the cache is a stale one or not. If the browser cache is stale, we can inline it. When the page loads for the first time, based on the cookie value & the hash value we will inline the css, while the actual css file loads in the background and gets cached by the browser. Now, when the user visits the page the next time or reloads it, the css will be served from the browser cache and this way we could increase the page loading time while retaining the browser caching behaviour.
+
+```html
+<body onload="setCookie()" >
+  <script type="text/javascript">
+    function setCookie () {
+      document.cookie = "cssVersion=<some-hash-value>";
+    }
+  </script>
+
+  {%- if the css hash version doesnt match the cookie cssVersion, inline it %}  {# add an if condition accordingly #}
+    <style>
+      {{criticalCss}} //extracted critical css
+    </style>
+  {%- endif %}
+</body>
+```
+
 
 **How to use this script for multiple pages ?**
 
