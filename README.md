@@ -1,4 +1,4 @@
-# inline-critical-css
+# Conditionally inline critical css
 Improve website performance by conditionally inlining critical css.
 
 **What is Critical Css ?**
@@ -58,7 +58,7 @@ We need not inline the critical css to a page everytime, instead, **we can inlin
 
 **How to conditionally inline the critical css ?**
 
-Using a cookie & a hashed value for css files, we can check if the css available in the cache is a stale one or not. If the browser cache is stale, we can inline it. When the page loads for the first time, based on the cookie value & the hash value we will inline the css, while the actual css file loads in the background and gets cached by the browser. Now, when the user visits the page the next time or reloads it, the css will be served from the browser cache and this way we could increase the page loading time while retaining the browser caching behaviour.
+Using a cookie & a hashed value for css files, we can check if the css available in the cache is a stale one or not. If the browser cache is stale, we can inline it. When the page loads for the first time, **if the cookie value & the css file hash value are different, we will inline the css**, while the actual css file loads in the background and gets cached by the browser. Now, when the user visits the page the next time or reloads it **(Now both hash values will be same and hence no inlining css)**, the css will be served from the browser cache and this way we could increase the page loading time while retaining the browser caching behaviour.
 
 ```html
 <body onload="setCookie()" >
